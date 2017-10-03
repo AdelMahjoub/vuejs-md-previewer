@@ -40,4 +40,10 @@ export default {
 #markdown, #preview {
   font-size: 14px;
 }
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-thumb {
+   background-color: #999;
+}
 </style>

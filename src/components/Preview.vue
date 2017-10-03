@@ -48,5 +48,8 @@ export default {
 </script>
 
 <style scoped>
-
+#preview {
+  height: 600px;
+  overflow-y: scroll;
+}
 </style>

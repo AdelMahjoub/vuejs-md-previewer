@@ -1,6 +1,7 @@
 <template>
   <div class="level">
     <div class="level-left">
+      <!-- key events: undo redo -->
       <a
       @click="$parent.$emit(keyEvent.trigger)"
       :key="`keyEvent-${index}`"
@@ -12,6 +13,9 @@
           <i :class="keyEvent.class"></i>
         </span>
       </a>
+      <!-- space -->
+      <div class="level-item"></div>
+      <!-- text actions: bold, italic ... -->
       <a
       @click="applyAction"
       :data-action="action.function"
@@ -28,7 +32,30 @@
           v-html="action.textContent"></i>
         </span>
       </a>
+      <!-- divider -->
+      <div class="level-item"></div>
+
+      <!-- headers actions: markdown headers -->
+      <a
+        :key="`header-${index}`"
+        v-for="index in 6"
+        :title="`Set a H${index} header`"
+        :data-header="index"
+        @click="addHeader"
+        class="button is-dark is-outlined">
+        <span
+        :data-header="index"
+        class="icon is-small">
+          <i
+          :data-header="index" 
+          class="fa">H{{index}}</i>
+        </span>
+      </a>
+      <!-- divider -->
+      <div class="level-item"></div>
+      
     </div>
+
     <div class="level-right">
       <a
       @click="toggleTheme"
@@ -79,6 +106,10 @@ export default {
           this.$parent.$emit('update-selection', '~~'.concat(selection).concat('~~'));
         break;
       }
+    },
+    addHeader(e) {
+      const header = e.target.getAttribute('data-header');
+      this.$parent.$emit('add-header', header)
     },
     toggleTheme() {
       this.$parent.$emit('toggle-theme');

@@ -37,7 +37,7 @@ export default {
       autoCloseBrackets: true,
       lineWrapping: true
     });
-    this.editor.setSize('100%', 600)
+    this.editor.setSize('100%', 600);
     this.editor.on('change', (instance, changeObj) => {
       this.markdown = this.editor.getValue();
       this.handleChange();
@@ -54,6 +54,11 @@ export default {
     this.$parent.$on('toggle-theme', () => {
       this.toggleTheme();
     });
+    this.$parent.$on('add-header', (header) => {
+      let line = this.editor.getCursor().line;
+      let content = '#'.repeat(header) + ' ';
+      this.editor.replaceRange(content, {line, ch: 0});
+    })
   }
 }
 </script>
