@@ -1,10 +1,11 @@
 const store = {
   appTitle: 'markdown previewer',
+  author: 'Adel Mahjoub',
   socials: {
     github: 'https://github.com/AdelMahjoub/vuejs-md-previewer',
   },
   toolbar: {
-    actions: [
+    fontEvents: [
       {
         title: 'Selection text to uppercase',
         class: 'fa fa-font',
@@ -52,6 +53,37 @@ const store = {
         title: 'Redo',
         class: 'fa fa-repeat',
         trigger: 'redo'
+      }
+    ],
+    listEvents: [
+      {
+        title: 'Unordered list',
+        class: 'fa fa-list-ul',
+        trigger: 'unordered'
+      },
+      {
+        title: 'Ordered list',
+        class: 'fa fa-list-ol',
+        trigger: 'ordered'
+      }
+    ],
+    linkEvents: [
+      {
+        title: 'Inline link',
+        class: 'fa fa-link',
+        trigger: 'link'
+      },
+      {
+        title: 'Image',
+        class: 'fa fa-picture-o',
+        trigger: 'image'
+      }
+    ],
+    miscEvents: [
+      {
+        title: 'Clear',
+        class: 'fa fa-eraser',
+        trigger: 'clear'
       }
     ]
   }

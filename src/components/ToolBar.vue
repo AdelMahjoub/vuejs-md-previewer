@@ -15,12 +15,12 @@
       </a>
       <!-- space -->
       <div class="level-item"></div>
-      <!-- text actions: bold, italic ... -->
+      <!-- text font events: bold, italic ... -->
       <a
       @click="applyAction"
       :data-action="action.function"
       :key="`action-${index}`"
-      v-for="(action, index) in actions"
+      v-for="(action, index) in fontEvents"
       :title="action.title"
       class="button is-dark is-outlined">
         <span
@@ -35,7 +35,7 @@
       <!-- divider -->
       <div class="level-item"></div>
 
-      <!-- headers actions: markdown headers -->
+      <!-- headers events: markdown headers -->
       <a
         :key="`header-${index}`"
         v-for="index in 6"
@@ -53,7 +53,61 @@
       </a>
       <!-- divider -->
       <div class="level-item"></div>
-      
+
+      <!-- list events: ordered, unerdored -->
+      <a
+      @click="addList"
+      :data-action="action.trigger"
+      :key="`action-${index}`"
+      v-for="(action, index) in listEvents"
+      :title="action.title"
+      class="button is-dark is-outlined">
+        <span
+        :data-action="action.trigger" 
+        class="icon is-small">
+          <i
+          :data-action="action.trigger" 
+          :class="action.class"></i>
+        </span>
+      </a>
+      <!-- divider -->
+      <div class="level-item"></div>
+
+      <!-- link events: url link, image link -->
+      <a
+      @click="addLink"
+      :data-action="action.trigger"
+      :key="`action-${index}`"
+      v-for="(action, index) in linkEvents"
+      :title="action.title"
+      class="button is-dark is-outlined">
+        <span
+        :data-action="action.trigger" 
+        class="icon is-small">
+          <i
+          :data-action="action.trigger" 
+          :class="action.class"></i>
+        </span>
+      </a>
+      <!-- divider -->
+      <div class="level-item"></div>
+
+      <!-- misc events: clear ... -->
+      <a
+      @click="clear"
+      :data-action="action.trigger"
+      :key="`action-${index}`"
+      v-for="(action, index) in miscEvents"
+      :title="action.title"
+      class="button is-dark is-outlined">
+        <span
+        :data-action="action.trigger" 
+        class="icon is-small">
+          <i
+          :data-action="action.trigger" 
+          :class="action.class"></i>
+        </span>
+      </a>
     </div>
 
     <div class="level-right">
@@ -73,8 +127,11 @@ export default {
   name: 'tool-bar',
   data() {
     return {
-      actions: store.toolbar.actions,
-      keyEvents: store.toolbar.keyEvents
+      fontEvents: store.toolbar.fontEvents,
+      keyEvents: store.toolbar.keyEvents,
+      listEvents: store.toolbar.listEvents,
+      linkEvents: store.toolbar.linkEvents,
+      miscEvents: store.toolbar.miscEvents
     };
   },
   methods: {
@@ -113,6 +170,17 @@ export default {
     },
     toggleTheme() {
       this.$parent.$emit('toggle-theme');
+    },
+    addList(e) {
+      const listType = e.target.getAttribute('data-action');
+      this.$parent.$emit('add-list', listType);
+    },
+    addLink(e) {
+      const linkType = e.target.getAttribute('data-action');
+      this.$parent.$emit('prepare-link', linkType);
+    },
+    clear() {
+      this.$parent.$emit('clear');
     }
   }
 }
@@ -125,5 +193,4 @@ export default {
 a {
   margin-right: 4px;
 }
-
 </style>

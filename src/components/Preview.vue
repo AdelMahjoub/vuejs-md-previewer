@@ -41,7 +41,7 @@ export default {
   updated() {
     document.querySelectorAll('pre code')
       .forEach(block => {
-       hljs.highlightBlock(block);
+        hljs.highlightBlock(block);
       });
   }
 }
@@ -50,6 +50,6 @@ export default {
 <style scoped>
 #preview {
   height: 600px;
-  overflow-y: scroll;
+  overflow: scroll;
 }
 </style>

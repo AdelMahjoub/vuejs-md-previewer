@@ -11,6 +11,7 @@ import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/edit/closebrackets';
 import 'codemirror/theme/monokai.css';
 import 'codemirror/mode/gfm/gfm';
+import 'animate.css/animate.min.css';
 
 Vue.config.productionTip = false;
 

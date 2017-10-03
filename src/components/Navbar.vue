@@ -25,8 +25,9 @@
           class="navbar-item has-text-dark" 
           :href="socials.github"
           target="_blank">
-            <span class="icon">
+            <span class="has-icon">
               <i class="fa fa-github fa-lg"></i>
+              <span>Github</span>
             </span>
           </a>
         </div>
