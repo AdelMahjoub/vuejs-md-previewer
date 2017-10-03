@@ -54,7 +54,7 @@ export default {
     applyAction(e) {
       e.preventDefault();
       const action = e.target.getAttribute('data-action');
-      const selection = window.getSelection().toString();
+      const selection = window.getSelection().toString() || '';
       switch(action) {
         case 'titlecase':
           this.$parent.$emit('update-selection', selection.toUpperCase());
@@ -63,9 +63,11 @@ export default {
           this.$parent.$emit('update-selection', selection.toLowerCase());
         break;
         case 'capitalize':
-          const capitalized = 
-          selection.toLowerCase().split(' ').map(selection => selection[0].toUpperCase().concat(selection.slice(1))).join(' ');
-          this.$parent.$emit('update-selection', capitalized);
+          if(Boolean(selection)) {
+            const capitalized = 
+              selection.toLowerCase().split(' ').map(selection => selection[0].toUpperCase().concat(selection.slice(1))).join(' ');
+            this.$parent.$emit('update-selection', capitalized);
+          }
         break;
         case 'bold':
           this.$parent.$emit('update-selection', '**'.concat(selection).concat('**'));
