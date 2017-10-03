@@ -1,7 +1,7 @@
 const store = {
   appTitle: 'markdown previewer',
   socials: {
-    github: 'https://github.com/AdelMahjoub',
+    github: 'https://github.com/AdelMahjoub/vuejs-md-previewer',
   },
   toolbar: {
     actions: [
