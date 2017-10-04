@@ -48,8 +48,32 @@ export default {
       this.markdown = this.editor.getValue();
       this.handleChange();
     });
-    this.$parent.$on('update-selection', updated => {
-      this.editor.replaceSelection(updated);
+    this.$parent.$on('update-selection', action => {
+      let selection = this.editor.getSelection();
+      switch(action) {
+        case 'titlecase':
+          this.editor.replaceSelection(selection.toUpperCase());
+        break;
+        case 'lowercase':
+          this.editor.replaceSelection(selection.toLowerCase());
+        break;
+        case 'capitalize':
+          if(Boolean(selection)) {
+            const capitalized = 
+              selection.toLowerCase().split(' ').map(selection => selection[0].toUpperCase().concat(selection.slice(1))).join(' ');
+            this.editor.replaceSelection(capitalized);
+          }
+        break;
+        case 'bold':
+          this.editor.replaceSelection(`**${selection}**`);
+        break;
+        case 'italic':
+          this.editor.replaceSelection(`*${selection}*`);
+        break;
+        case 'strikethrough':
+          this.editor.replaceSelection(`~~${selection}~~`);
+        break;
+      }
     });
     this.$parent.$on('undo', () => {
       this.editor.execCommand('undo');
